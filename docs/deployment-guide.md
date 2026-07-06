@@ -56,9 +56,9 @@ Associated the route table with:
 - `cafe-pub-subnet-2`
 
 **References:**
-- `images/networking/8. public-route-table-1.png`
-- `images/networking/8. public-route-table-2.png`
-- `images/networking/8. public-route-table-3.png`
+- `images/networking/7. public-route-table-1.png`
+- `images/networking/7. public-route-table-2.png`
+- `images/networking/7. public-route-table-3.png`
 
 ---
 
@@ -68,8 +68,8 @@ Allocated an Elastic IP address and created a NAT Gateway in **`cafe-pub-subnet-
 
 **Reference:** `images/networking/7. NAT-gateway.png`
 **References:**
-- `images/networking/7. NAT-gateway.png`
-- `images/networking/10. elastic-ip`
+- `images/networking/8. NAT-gateway.png`
+- `images/networking/9. elastic-ip`
 
 ---
 
@@ -90,8 +90,8 @@ Associated the route table with:
 - `cafe-priv-subnet-2`
 
 **References:**
-- `images/networking/9. private-route-table-1.png`
-- `images/networking/9. private-route-table-2.png`
-- `images/networking/9. private-route-table-3.png`
+- `images/networking/10. private-route-table-1.png`
+- `images/networking/10. private-route-table-2.png`
+- `images/networking/10. private-route-table-3.png`
 
 ---
