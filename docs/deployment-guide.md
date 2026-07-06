@@ -258,4 +258,69 @@ The Application Load Balancer DNS name can be used to access the deployed web ap
 **Reference:**
 - `images/compute/9. app-load-balancer.png`
 - `images/compute/10. app-load-balancer.png`
-`
+
+---
+## Step 8: Configure Auto Scaling
+
+### 8.1 Create the Auto Scaling Group
+
+Created an Auto Scaling Group named **`cafe-ASG`** using the **`cafe-LT`** Launch Template.
+
+Configured the Auto Scaling Group to launch instances across **`cafe-priv-subnet-1`** and **`cafe-priv-subnet-2`** to provide high availability across two Availability Zones.
+
+Associated the Auto Scaling Group with the **`cafe-TG`** Target Group so that newly launched instances are automatically registered with the Application Load Balancer.
+
+**Reference:** `images/compute/11. asg.png`
+
+
+### 8.2 Configure Scaling Policy
+
+Configured the Auto Scaling Group with a **desired capacity of 2**, a **minimum capacity of 1**, and a **maximum capacity of 4** instances.
+
+Added a target tracking scaling policy based on **Average CPU Utilization** to automatically launch additional instances during increased load and terminate excess instances when demand decreases.
+
+**Reference:** `images/compute/11. asg.png`
+
+
+### 8.3 Verify Instance Registration
+
+Verified that EC2 instances launched by the Auto Scaling Group were automatically registered with the **`cafe-TG`** Target Group and reported a healthy status before receiving traffic from the Application Load Balancer.
+
+**Reference:** `images/validation/7. target-group.png`
+
+---
+# Step 9: Validation
+
+### 9.1 Verify Website Accessibility
+
+Verified that the web application was accessible through the **Application Load Balancer DNS**. The Application Load Balancer successfully routed incoming requests to healthy EC2 instances registered with the Target Group.
+
+**Reference:** `images/validation/1. website-from-alb-dns.png`
+
+
+### 9.2 Verify Auto Scaling
+
+Verified that the Auto Scaling Group maintained the desired capacity and automatically launched additional EC2 instances in response to increased CPU utilization.
+
+The Auto Scaling Group successfully scaled from **2 to 3** instances and later to the configured maximum capacity of **4** instances.
+
+**References:**
+- `images/validation/2. desired-capacity.png`
+- `images/validation/3. scale-out.png`
+- `images/validation/4. at-max-capacity.png`
+
+
+### 9.3 Verify Automated Log Archival
+
+Verified that the Apache **access** and **error** logs were successfully uploaded to the configured Amazon S3 bucket by the scheduled cron job.
+
+**References:**
+- `images/logging/4. logs-s3.png`
+- `images/logging/5. logs-s3.png`
+
+### 9.4 Verify Amazon EFS Mount
+
+Verified that the Amazon EFS file system was successfully mounted on the EC2 instance at **`/var/www/html/img`**, ensuring shared storage was available for the web application.
+
+**Reference:**
+- `images/storage/4. EFS-mount-info.PNG`
