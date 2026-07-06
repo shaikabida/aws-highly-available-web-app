@@ -4,11 +4,11 @@
 
   The solution consists of an Application Load Balancer that distributes incoming traffic across Amazon EC2 instances managed by an Auto Scaling Group within a custom Amazon VPC. Amazon EFS provides persistent shared storage for static assets, while Apache access and error logs are automatically archived to Amazon S3 using a scheduled cron job. The deployment also incorporates IAM roles, public and private subnets, a NAT Gateway, Amazon Machine Images (AMIs), and Launch Templates to create a secure, resilient, and scalable web hosting environment.
 
-# Architecture
+### Architecture
 
 <img width="1320" height="650" alt="image" src="https://github.com/user-attachments/assets/089a16be-9a9a-49af-bf71-a72f9b50665f" />
 
-# AWS Services Used
+### AWS Services Used
 | AWS Service  | Purpose |
 |--------------|---------|
 | Amazon VPC               | Provides an isolated virtual network for the application infrastructure. |
@@ -27,7 +27,7 @@
 | Amazon S3 | Stores Apache access and error logs uploaded automatically by a scheduled cron job. |
 | IAM Role | Grants EC2 instances secure permission to upload logs to Amazon S3 without using access keys. |
 
-# Project Workflow
+### Project Workflow
 
 ```text
 User
@@ -58,7 +58,7 @@ Amazon S3 (Log Archive)
 ```
 
 
-## Deployment Summary
+### Deployment Summary
 
 This project was implemented in the following stages:
 
@@ -70,7 +70,7 @@ This project was implemented in the following stages:
 - Configured an Application Load Balancer, Target Group, and Auto Scaling Group to distribute traffic and automatically scale the application based on demand.
 - Verified the deployment by verifying website accessibility, Auto Scaling events, shared storage through Amazon EFS, and successful log archival to Amazon S3.
 
-## Key Features
+### Key Features
 
 - Designed a highly available architecture across multiple Availability Zones.
 - Deployed the web application in private subnets behind an Application Load Balancer.
@@ -80,7 +80,7 @@ This project was implemented in the following stages:
 - Secured AWS resources using IAM roles, Security Groups, and a Bastion Host.
 - Automated EC2 provisioning using a Launch Template and Amazon Machine Image (AMI).
 
-## Documentation
+### Documentation
 
 Detailed deployment documentation is available in the **`docs/`** directory, while architecture diagrams and supporting screenshots can be found in the **`images/`** directory.
 
