@@ -8,7 +8,6 @@ Created a custom Amazon VPC named **`cafe-vpc`** with the CIDR block **`172.16.0
 
 **Reference:** `images/networking/1. vpc.png`
 
----
 
 ### 1.2 Create Public and Private Subnets
 
@@ -29,7 +28,6 @@ Enabled **Auto-assign Public IPv4 Address** for both public subnets to allow int
 - `images/networking/4. private-subnet-1.png`
 - `images/networking/5. private-subnet-2.png`
 
----
 
 ### 1.3 Configure Internet Gateway
 
@@ -37,7 +35,6 @@ Created an Internet Gateway named **`cafe-IGW`** and attached it to **`cafe-vpc`
 
 **Reference:** `images/networking/6. internet-gateway.png`
 
----
 
 ### 1.4 Configure Public Route Table
 
@@ -60,18 +57,15 @@ Associated the route table with:
 - `images/networking/7. public-route-table-2.png`
 - `images/networking/7. public-route-table-3.png`
 
----
 
 ### 1.5 Configure NAT Gateway
 
 Allocated an Elastic IP address and created a NAT Gateway in **`cafe-pub-subnet-2`** to provide outbound internet access for instances deployed in the private subnets.
 
-**Reference:** `images/networking/7. NAT-gateway.png`
 **References:**
 - `images/networking/8. NAT-gateway.png`
 - `images/networking/9. elastic-ip`
 
----
 
 ### 1.6 Configure Private Route Table
 
@@ -93,5 +87,35 @@ Associated the route table with:
 - `images/networking/10. private-route-table-1.png`
 - `images/networking/10. private-route-table-2.png`
 - `images/networking/10. private-route-table-3.png`
+  
+---
+## Step 2: Configure Security
+
+### 2.1 Create Security Groups
+
+Created separate Security Groups for each AWS resource to control inbound and outbound network traffic.
+
+| Security Group | Purpose |
+|----------------|---------|
+| cafe-bastion-sg | Allows SSH (TCP 22) access only from my public IP address. |
+| cafe-alb-sg | Allows HTTP traffic from the internet to the Application Load Balancer. |
+| cafe-instances-sg | Allows HTTP traffic from the ALB and SSH access from the Bastion Host. |
+| cafe-efs-sg | Allows NFS (TCP 2049) access from the web server instances. |
+
+**References:**
+- `images/security/1. sg-bastion.png`
+- `images/security/2. sg-alb.png`
+- `images/security/3. sg-alb.png`
+- `images/security/4. sg-efs.png`
+
+
+### 2.2 Deploy the Bastion Host
+
+Launched a Bastion Host in **`cafe-pub-subnet-1`** to securely reach EC2 instances deployed in the private subnets.
+
+Configured the instance with the **`cafe-bastion-sg`** Security Group, allowing SSH access only from my public IP address. The Bastion Host acts as the entry point for managing instances that do not have public IP addresses.
+
+**References:**
+- `images/security/5. bastion-host.png`
 
 ---
