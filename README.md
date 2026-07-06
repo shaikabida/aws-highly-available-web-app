@@ -92,7 +92,8 @@ Detailed deployment documentation is available in the **`docs/`** directory, whi
 ---
 ### Author
 
-**Abida Shaik**
+**Abida Shaik** :)
+
 If you'd like to discuss this project or provide feedback, feel free to connect.
 
 
