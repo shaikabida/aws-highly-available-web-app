@@ -89,6 +89,12 @@ This project was implemented in the following stages:
 
 Detailed deployment documentation is available in the **`docs/`** directory, while architecture diagrams and supporting screenshots can be found in the **`images/`** directory.
 
+---
+### Author
+
+**Abida Shaik**
+If you'd like to discuss this project or provide feedback, feel free to connect.
+
 
 
 
