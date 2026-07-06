@@ -201,15 +201,15 @@ Created a shell script to automate the upload of Apache **`access_log`** and **`
 
 **References:**
 - `docs/scripts/web_logs_s3.sh`
-- `images/logging/3. logs-s3.png`
 - `images/logging/4. logs-s3.png`
+- `images/logging/5. logs-s3.png`
 
 
 ### 5.4 Schedule the Log Upload
 
 Configured a cron job to execute the log upload script at regular intervals, ensuring that Apache logs are automatically archived to Amazon S3 without manual intervention.
 
-**References:** `images/logging/5. cronjob.png`
+**References:** `images/logging/6. cronjob.png`
 
 ---
 ## Step 6: Create the Amazon Machine Image and Launch Template
@@ -235,5 +235,27 @@ This ensures that every instance launched by the Auto Scaling Group is provision
 - `images/compute/6. LT-s3-role.png`
 
 ---
+## Step 7: Configure Traffic Distribution
 
+### 7.1 Create the Target Group
+
+Created an Application Load Balancer Target Group named **`cafe-TG`** to route incoming HTTP requests to the EC2 instances.
+
+The Target Group was configured to use HTTP on port **80** and health checks were enabled to monitor the availability of registered instances.
+
+**Reference:** `images/compute/7. target-group.png`
+
+
+### 7.2 Create the Application Load Balancer
+
+Created an internet-facing Application Load Balancer named **`cafe-ALB`** across the two public subnets.
+
+Configured a listener on **HTTP (Port 80)** and associated it with the **`cafe-TG`** Target Group to distribute incoming traffic across healthy EC2 instances.
+
+The Application Load Balancer serves as the single entry point for users accessing the web application.
+The Application Load Balancer DNS name can be used to access the deployed web application once healthy EC2 instances are registered with the Target Group.
+
+**Reference:**
+- `images/compute/9. app-load-balancer.png`
+- `images/compute/10. app-load-balancer.png`
 `
