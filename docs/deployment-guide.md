@@ -192,7 +192,7 @@ Created an Amazon S3 bucket named **`cafe-web-access-logs`** to store Apache acc
 
 Created an IAM role with **AmazonS3FullAccess** permissions and attached it to the EC2 instance. This allowed the instance to securely upload log files to Amazon S3 without using access keys.
 
-**Reference:** `images/security/2. iam-role.png`
+**Reference:** `images/logging/2. iam-role.png`
 
 
 ### 5.3 Configure Automated Log Upload
@@ -201,8 +201,8 @@ Created a shell script to automate the upload of Apache **`access_log`** and **`
 
 **References:**
 - `docs/scripts/web_logs_s3.sh`
-- `images/security/3. logs-s3.png`
-- `images/security/4. logs-s3.png`
+- `images/logging/3. logs-s3.png`
+- `images/logging/4. logs-s3.png`
 
 
 ### 5.4 Schedule the Log Upload
