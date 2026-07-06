@@ -126,16 +126,14 @@ Configured the instance with the **`cafe-bastion-sg`** Security Group, allowing 
 
 Created an Amazon Elastic File System named **`cafe-images`** to provide persistent shared storage for website images across all EC2 instances.
 
-**Reference:**
-- `images/storage/1. EFS.png`
+**Reference:** `images/storage/1. EFS.png`
 
 - 
 ### 3.2 Create an EFS Access Point
 
 Created an EFS Access Point to provide a consistent mount path and simplify access to the shared file system from EC2 instances.
 
-**Reference:**
-- `images/storage/2. access-point.png`
+**Reference:** images/storage/2. access-point.png`
 
 
 ### 3.3 Configure Automatic Mounting
@@ -152,6 +150,33 @@ The mount was configured through EC2 User Data, allowing every instance launched
 **References:**
 - `docs/scripts/userdata.sh`
 - `images/storage/3. fstab.png`
+
+---
+## Step 4: Deploy the Web Application
+
+### 4.1 Launch the EC2 Instance
+
+Launched an Amazon EC2 instance in **`cafe-priv-subnet-1`** using the **`cafe-instances-sg`** Security Group.
+
+This instance was configured as the web server and later used to create the Amazon Machine Image (AMI) for the Auto Scaling Group.
+
+**Reference:** `images/compute/1. instance.png`
+
+
+### 4.2 Configure the Web Server
+
+Configured the EC2 User Data script to automatically:
+
+- Install Apache HTTP Server and the required packages.
+- Create the mount directory for Amazon EFS.
+- Mount the Amazon EFS file system.
+- Clone the Wave Cafe static website from GitHub.
+- Copy the website files to **`/var/www/html`**.
+- Start and enable the Apache service.
+
+This ensures every instance launched from the Launch Template is automatically configured without manual intervention.
+
+**Reference:**  `docs/scripts/userdata.sh`
 
 ---
 
