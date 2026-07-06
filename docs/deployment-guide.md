@@ -119,3 +119,39 @@ Configured the instance with the **`cafe-bastion-sg`** Security Group, allowing 
 - `images/security/5. bastion-host.png`
 
 ---
+
+## Step 3: Configure Shared Storage
+
+### 3.1 Create the Amazon EFS File System
+
+Created an Amazon Elastic File System named **`cafe-images`** to provide persistent shared storage for website images across all EC2 instances.
+
+**Reference:**
+- `images/storage/1. EFS.png`
+
+- 
+### 3.2 Create an EFS Access Point
+
+Created an EFS Access Point to provide a consistent mount path and simplify access to the shared file system from EC2 instances.
+
+**Reference:**
+- `images/storage/2. access-point.png`
+
+
+### 3.3 Configure Automatic Mounting
+
+Configured the EC2 User Data script to automatically:
+
+- Install the required packages (`amazon-efs-utils`).
+- Create the mount directory at **`/var/www/html/img`**.
+- Add the EFS mount entry to **`/etc/fstab`** using the EFS Access Point.
+- Mount the file system automatically using `mount -a`.
+
+The mount was configured through EC2 User Data, allowing every instance launched from the Launch Template to automatically connect to the shared file system during startup.
+
+**References:**
+- `docs/scripts/userdata.sh`
+- `images/storage/3. fstab.png`
+
+---
+
