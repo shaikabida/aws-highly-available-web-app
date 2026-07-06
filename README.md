@@ -58,6 +58,34 @@ Amazon S3 (Log Archive)
 ```
 
 
+## Deployment Summary
+
+This project was implemented in the following stages:
+
+- Built a custom Amazon VPC with public and private subnets spread across two Availability Zones to provide a secure and highly available network.
+- Configured networking components including an Internet Gateway, NAT Gateway, route tables, Security Groups, and a Bastion Host for secure administration.
+- Set up Amazon EFS with an Access Point and mounted it on the web server to provide shared storage for website images across all instances.
+- Deployed the Apache web server, hosted the Wave Cafe static website, and automated Apache log archival to Amazon S3 using an IAM role, shell script, and scheduled cron job.
+- Created an Amazon Machine Image (AMI) and Launch Template to standardize EC2 instance provisioning.
+- Configured an Application Load Balancer, Target Group, and Auto Scaling Group to distribute traffic and automatically scale the application based on demand.
+- Verified the deployment by verifying website accessibility, Auto Scaling events, shared storage through Amazon EFS, and successful log archival to Amazon S3.
+
+## Key Features
+
+- Designed a highly available architecture across multiple Availability Zones.
+- Deployed the web application in private subnets behind an Application Load Balancer.
+- Implemented automatic scaling using Amazon EC2 Auto Scaling.
+- Configured Amazon EFS for persistent shared storage across EC2 instances.
+- Automated Apache access and error log archival to Amazon S3 using a shell script executed by cron job.
+- Secured AWS resources using IAM roles, Security Groups, and a Bastion Host.
+- Automated EC2 provisioning using a Launch Template and Amazon Machine Image (AMI).
+
+## Documentation
+
+Detailed deployment documentation is available in the **`docs/`** directory, while architecture diagrams and supporting screenshots can be found in the **`images/`** directory.
+
+
+
 
   
 
