@@ -1,0 +1,97 @@
+# Deployment Guide
+
+## Step 1: Configure the Networking Infrastructure
+
+### 1.1 Create the VPC
+
+Created a custom Amazon VPC named **`cafe-vpc`** with the CIDR block **`172.16.0.0/16`**.
+
+**Reference:** `images/networking/1. vpc.png`
+
+---
+
+### 1.2 Create Public and Private Subnets
+
+Created two public and two private subnets across two Availability Zones to provide high availability.
+
+| Subnet Name | CIDR Block | Availability Zone | Type |
+|-------------|------------|-------------------|------|
+| cafe-pub-subnet-1 | 172.16.1.0/24 | us-east-1a | Public |
+| cafe-pub-subnet-2 | 172.16.2.0/24 | us-east-1b | Public |
+| cafe-priv-subnet-1 | 172.16.15.0/24 | us-east-1a | Private |
+| cafe-priv-subnet-2 | 172.16.16.0/24 | us-east-1b | Private |
+
+Enabled **Auto-assign Public IPv4 Address** for both public subnets to allow internet connectivity for public resources.
+
+**References:**
+- `images/networking/2. public-subnet-1.png`
+- `images/networking/3. public-subnet-2.png`
+- `images/networking/4. private-subnet-1.png`
+- `images/networking/5. private-subnet-2.png`
+
+---
+
+### 1.3 Configure Internet Gateway
+
+Created an Internet Gateway named **`cafe-IGW`** and attached it to **`cafe-vpc`** to provide internet access for resources deployed in the public subnets.
+
+**Reference:** `images/networking/6. internet-gateway.png`
+
+---
+
+### 1.4 Configure Public Route Table
+
+Created a public route table named **`cafe-pub-RT`**.
+
+Configured the following routes:
+
+| Destination | Target |
+|-------------|--------|
+| 172.16.0.0/16 | Local |
+| 0.0.0.0/0 | Internet Gateway (`cafe-IGW`) |
+
+Associated the route table with:
+
+- `cafe-pub-subnet-1`
+- `cafe-pub-subnet-2`
+
+**References:**
+- `images/networking/8. public-route-table-1.png`
+- `images/networking/8. public-route-table-2.png`
+- `images/networking/8. public-route-table-3.png`
+
+---
+
+### 1.5 Configure NAT Gateway
+
+Allocated an Elastic IP address and created a NAT Gateway in **`cafe-pub-subnet-2`** to provide outbound internet access for instances deployed in the private subnets.
+
+**Reference:** `images/networking/7. NAT-gateway.png`
+**References:**
+- `images/networking/7. NAT-gateway.png`
+- `images/networking/10. elastic-ip`
+
+---
+
+### 1.6 Configure Private Route Table
+
+Created a private route table named **`cafe-priv-RT`**.
+
+Configured the following routes:
+
+| Destination | Target |
+|-------------|--------|
+| 172.16.0.0/16 | Local |
+| 0.0.0.0/0 | NAT Gateway |
+
+Associated the route table with:
+
+- `cafe-priv-subnet-1`
+- `cafe-priv-subnet-2`
+
+**References:**
+- `images/networking/9. private-route-table-1.png`
+- `images/networking/9. private-route-table-2.png`
+- `images/networking/9. private-route-table-3.png`
+
+---
