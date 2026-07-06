@@ -6,8 +6,8 @@
 
 # architecture
 
+<img width="1320" height="650" alt="image" src="https://github.com/user-attachments/assets/089a16be-9a9a-49af-bf71-a72f9b50665f" />
 
-<img width="1301" height="681" alt="image" src="https://github.com/user-attachments/assets/fcddf5f1-bb96-4533-8490-7c6b12e74a24" />
 
 
   
