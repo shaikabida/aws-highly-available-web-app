@@ -27,6 +27,36 @@
 | Amazon S3 | Stores Apache access and error logs uploaded automatically by a scheduled cron job. |
 | IAM Role | Grants EC2 instances secure permission to upload logs to Amazon S3 without using access keys. |
 
+# Project Workflow
+
+```text
+User
+   │
+   ▼
+Application Load Balancer (ALB)
+   │
+   ▼
+Target Group
+   │
+   ▼
+Auto Scaling Group
+   │
+   ▼
+Amazon EC2 Instances
+   │
+   ├── Serves website files from /var/www/html
+   │
+   ├── Website images from Amazon EFS (/var/www/html/img)
+   │
+   └── Apache generates access_log and error_log
+               │
+               ▼
+        Scheduled Cron Job
+               │
+               ▼
+Amazon S3 (Log Archive)
+```
+
 
 
   
