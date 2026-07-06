@@ -323,4 +323,4 @@ Verified that the Apache **access** and **error** logs were successfully uploade
 Verified that the Amazon EFS file system was successfully mounted on the EC2 instance at **`/var/www/html/img`**, ensuring shared storage was available for the web application.
 
 **Reference:**
-- [EFS mount info](../images/storage/4. EFS-mount-info.PNG)
+- `images/storage/4. EFS-mount-info.png`
